@@ -35,14 +35,22 @@ def main():
             if date >= a_week_ago:
 
                 job = {
-
                     "startDate": str(date),
                     "title": article.find('a', {'class': 'recruiter-job-link'}).text,
-                    "location": article.find('div',  {'class': 'location'}).text.replace("\n", ""),
-                    "recruiter": article.find('span',  {'class': 'recruiter-company-profile-job-organization'}).text.replace("\n", ""),
                     "url": article.find('a').get('href')
-
                 }
+
+                try:
+                    job["location"] = article.find('div',  {'class': 'location'}).text.replace("\n", "")
+
+                except AttributeError:
+                    job["location"] = None
+
+                try:
+                    job["recruiter"] = article.find('span',  {'class': 'recruiter-company-profile-job-organization'}).text.replace("\n", ""),
+
+                except AttributeError:
+                    job["recruiter"] = None
 
                 jobs.append(job)
 
