@@ -1,3 +1,6 @@
+from selenium import webdriver
+
+
 def main():
     """
     Use this function to build a scraper for content of jobroom.ch.
@@ -7,7 +10,10 @@ def main():
     Since the content of this page is rendered dynamically, we have to use
     selenium webdriver to extract it.
     """
-    pass
+    url = 'https://www.job-room.ch/job-search/dea5789c-3dc1-11ea-ab6f-005056ac086d'
+    executable_path = './chromedriver'
+    driver = webdriver.Chrome(executable_path=executable_path)
+    driver.get(url)
 
 
 if __name__ == '__main__':
